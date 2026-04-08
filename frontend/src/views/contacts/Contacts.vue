@@ -75,7 +75,7 @@
       <b-table-column
         v-slot="props"
         field="name"
-        :label="$t('globals.fields.name')"
+        label="First Name"
         header-class="cy-name"
         sortable
         width="25%"
@@ -87,15 +87,26 @@
       >
         <div>
           <a :href="`/contacts/${props.row.id}`" @click.prevent="showEditForm(props.row)">
-            {{ props.row.name }}
+            {{ props.row.firstName }}
           </a>
         </div>
       </b-table-column>
 
       <b-table-column
         v-slot="props"
+        field="last_name"
+        label="Last Name"
+        header-class="cy-last-name"
+        sortable
+        width="25%"
+      >
+        {{ props.row.lastName }}
+      </b-table-column>
+
+      <b-table-column
+        v-slot="props"
         field="email"
-        :label="$t('globals.fields.email')"
+        label="Email"
         header-class="cy-email"
         sortable
         width="30%"
@@ -106,7 +117,7 @@
       <b-table-column
         v-slot="props"
         field="phone"
-        :label="$t('globals.fields.phone')"
+        label="Phone"
         header-class="cy-phone"
         sortable
         width="20%"
@@ -116,8 +127,8 @@
     </b-table>
 
     <b-modal
-      scroll="keep"
-      width="600"
+      :scroll="keep"
+      :width="600"
       :active.sync="isFormVisible"
       :can-cancel="[{ rafte: onFormClose }]"
     >
@@ -157,23 +168,6 @@ export default Vue.extend({
     };
   },
 
-  computed: {
-    ...mapState(['loading', 'settings']),
-    numSelectedContacts() {
-      return this.bulk.all ? this.records.total : this.bulk.checked.length;
-    },
-  },
-
-  watch: {
-    $route() {
-      this.fetchRecords();
-    },
-  },
-
-  mounted() {
-    this.fetchRecords();
-  },
-
   methods: {
     showNewForm() {
       this.curItem = {};
@@ -191,6 +185,7 @@ export default Vue.extend({
       this.curItem = null;
       this.isFormVisible = false;
       this.isEditing = false;
+      this.fetchRecords();
     },
 
     onTableCheck(selection) {
@@ -251,6 +246,25 @@ export default Vue.extend({
         this.$store.dispatch('setLoading', { key: 'contacts', value: false });
       }
     },
+  },
+
+  computed: {
+    ...mapState(['loading', 'settings']),
+    numSelectedContacts() {
+      return this.bulk.all ? this.records.total : this.bulk.checked.length;
+    },
+  },
+
+  created() {
+    this.$root.$on('page.refresh', this.fetchRecords);
+  },
+
+  destroyed() {
+    this.$root.$off('page.refresh', this.fetchRecords);
+  },
+
+  mounted() {
+    this.fetchRecords();
   },
 });
 </script>

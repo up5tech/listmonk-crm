@@ -191,6 +191,7 @@ export default Vue.extend({
     // EmptyPlaceholder,
     AccountForm,
   },
+
   data() {
     return {
       curItem: null,
@@ -212,6 +213,7 @@ export default Vue.extend({
       },
     };
   },
+
   methods: {
     showNewForm() {
       this.curItem = {};
@@ -229,6 +231,7 @@ export default Vue.extend({
       this.curItem = null;
       this.isFormVisible = false;
       this.isEditing = false;
+      this.fetchRecords();
     },
 
     onPageChange(page) {
