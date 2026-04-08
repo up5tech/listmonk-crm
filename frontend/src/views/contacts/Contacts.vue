@@ -127,7 +127,7 @@
     </b-table>
 
     <b-modal
-      :scroll="keep"
+      scroll="keep"
       :width="600"
       :active.sync="isFormVisible"
       :can-cancel="[{ rafte: onFormClose }]"
@@ -197,16 +197,12 @@ export default Vue.extend({
       this.bulk.checked = [];
     },
 
-    async fetchRecords() {
+    fetchRecords() {
       this.bulk.checked = [];
       this.bulk.all = false;
-      this.$store.dispatch('setLoading', { key: 'contacts', value: true });
-      try {
-        const response = await this.$api.getContacts(this.queryParams);
+      this.$api.getContacts(this.queryParams).then((response) => {
         this.records = response || {};
-      } finally {
-        this.$store.dispatch('setLoading', { key: 'contacts', value: false });
-      }
+      });
     },
 
     onPageChange(page) {
