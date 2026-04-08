@@ -137,6 +137,18 @@ const routes = [
     meta: { title: 'maintenance.title', group: 'settings' },
     component: () => import('../views/Maintenance.vue'),
   },
+  {
+    path: '/accounts',
+    name: 'accounts',
+    meta: { title: 'accounts.title', group: 'settings' },
+    component: () => import('../views/accounts/Accounts.vue'),
+  },
+  {
+    path: '/contacts',
+    name: 'contacts',
+    meta: { title: 'contacts.title', group: 'contacts' },
+    component: () => import('../views/contacts/Contacts.vue'),
+  },
 ];
 
 const router = new VueRouter({

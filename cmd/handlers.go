@@ -222,6 +222,20 @@ func initHTTPHandlers(e *echo.Echo, a *App) {
 			// Private authenticated bounce endpoint.
 			g.POST("/webhooks/bounce", pm(a.BounceWebhook, "webhooks:post_bounce"))
 		}
+
+		// accounts
+		g.GET("/api/accounts", pm(a.GetAccounts, "accounts:get"))
+		g.GET("/api/accounts/:id", pm(a.GetAccount, "accounts:get"))
+		g.POST("/api/accounts", pm(a.CreateAccount, "accounts:manager"))
+		g.PUT("/api/accounts/:id", pm(a.UpdateAccount, "accounts:manager"))
+		g.DELETE("/api/accounts/:id", pm(a.DeleteAccount, "accounts:manager"))
+
+		// contacts
+		g.GET("/api/contacts", pm(a.GetContacts, "contacts:get"))
+		g.GET("/api/contacts/:id", pm(hasID(a.GetContact), "contacts:get"))
+		g.POST("/api/contacts", pm(a.CreateContact, "contacts:manager"))
+		g.PUT("/api/contacts/:id", pm(hasID(a.UpdateContact), "contacts:manager"))
+		g.DELETE("/api/contacts/:id", pm(hasID(a.DeleteContact), "contacts:manager"))
 	}
 
 	// =================================================================
