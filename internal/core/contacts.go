@@ -51,7 +51,7 @@ func (c *Core) QueryContacts(
 
 func (c *Core) GetContactByID(id int64) (*models.Contact, error) {
 	var contact models.Contact
-	if err := c.db.Get(&contact, "SELECT * FROM contacts WHERE id = ? AND deleted = false", id); err != nil {
+	if err := c.db.Get(&contact, "SELECT * FROM contacts WHERE id = $1 AND deleted = false", id); err != nil {
 		return nil, err
 	}
 	return &contact, nil
@@ -100,7 +100,7 @@ func (c *Core) UpdateContact(id int64, contact models.Contact) (models.Contact, 
 }
 
 func (c *Core) DeleteContact(id int64) error {
-	_, err := c.db.Exec("UPDATE contacts SET deleted = true WHERE id = ?", id)
+	_, err := c.db.Exec("UPDATE contacts SET deleted = true WHERE id = $1", id)
 	if err != nil {
 		return err
 	}

@@ -7,10 +7,10 @@
 
       <section class="modal-card-body">
         <b-field label="First Name" label-position="on-border">
-          <b-input v-model="form.first_name" required />
+          <b-input v-model="form.firstName" required />
         </b-field>
         <b-field label="Last Name" label-position="on-border">
-          <b-input v-model="form.last_name" required />
+          <b-input v-model="form.lastName" required />
         </b-field>
         <b-field label="Email" label-position="on-border">
           <b-input v-model="form.email" required />
@@ -19,7 +19,7 @@
           <b-input v-model="form.phone" required />
         </b-field>
         <b-field label="Contact Type" label-position="on-border">
-          <b-select v-model="form.contact_type" required>
+          <b-select v-model="form.contactType" required>
             <option value="lead">Lead</option>
             <option value="customer">Customer</option>
           </b-select>
@@ -74,11 +74,11 @@ export default Vue.extend({
   data() {
     return {
       form: {
-        first_name: '',
-        last_name: '',
+        firstName: '',
+        lastName: '',
         email: '',
         phone: '',
-        contact_type: '',
+        contactType: '',
         status: '',
         description: '',
       },

@@ -21,13 +21,13 @@
         <b-field label="Short Name" label-position="on-border">
           <b-input
             :maxlength="100"
-            v-model="form.short_name"
-            name="short_name"
+            v-model="form.shortName"
+            name="shortName"
             placeholder="Short Name"
           />
         </b-field>
         <b-field label="Account Type" label-position="on-border">
-          <b-select v-model="form.account_type" name="account_type">
+          <b-select v-model="form.accountType" name="accountType">
             <option value="direct">Direct</option>
             <option value="agency">Agency</option>
           </b-select>
@@ -38,7 +38,7 @@
           </b-select>
         </b-field>
         <b-field label="Sic Code" label-position="on-border">
-          <b-input :maxlength="10" v-model="form.sic_code" name="sic_code" placeholder="Sic Code" />
+          <b-input :maxlength="10" v-model="form.sicCode" name="sicCode" placeholder="Sic Code" />
         </b-field>
         <b-field label="Website" label-position="on-border">
           <b-input :maxlength="100" v-model="form.website" name="website" placeholder="Website" />
@@ -85,10 +85,10 @@ export default Vue.extend({
     return {
       form: {
         name: '',
-        short_name: '',
-        account_type: '',
+        shortName: '',
+        accountType: '',
         industry: '',
-        sic_code: '',
+        sicCode: '',
         website: '',
         description: '',
       },
@@ -97,23 +97,10 @@ export default Vue.extend({
 
   computed: {
     ...mapState(['loading', 'profile']),
-
-    isArchived: {
-      get() {
-        return this.form.status === 'archived';
-      },
-      set(v) {
-        this.form.status = v ? 'archived' : 'active';
-      },
-    },
   },
 
   mounted() {
     this.form = { ...this.form, ...this.$props.data };
-
-    // this.$nextTick(() => {
-    //   this.$refs.focus.focus();
-    // });
   },
 
   methods: {

@@ -151,19 +151,30 @@
       >
         {{ props.row.createdAt }}
       </b-table-column>
+
+      <b-table-column v-slot="props" cell-class="actions" align="right">
+        <div>
+          <router-link
+            v-if="$can('accounts:manage')"
+            :to="`/accounts/${props.row.id}`"
+            data-cy="btn-detail-account"
+          >
+            <b-tooltip label="Detail" type="is-dark">
+              <b-icon icon="file-find-outline" size="is-small" />
+            </b-tooltip>
+          </router-link>
+        </div>
+      </b-table-column>
     </b-table>
 
     <!-- Add / edit form modal -->
     <b-modal
       scroll="keep"
-      :aria-modal="true"
-      :active.sync="isFormVisible"
       :width="600"
-      @close="onFormClose"
+      :active.sync="isFormVisible"
+      :can-cancel="[{ rafte: onFormClose }]"
     >
-      <template #default="props">
-        <AccountForm :record="props.record" />
-      </template>
+      <account-form :data="curItem" :is-editing="isEditing" @finished="onFormClose" />
     </b-modal>
 
     <p v-if="settings['app.cache_slow_queries']" class="has-text-grey">

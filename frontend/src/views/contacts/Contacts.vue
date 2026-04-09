@@ -124,6 +124,18 @@
       >
         {{ props.row.phone }}
       </b-table-column>
+
+      <b-table-column v-slot="props" cell-class="actions" align="right">
+        <router-link
+          v-if="$can('contacts:manage')"
+          :to="`/contacts/${props.row.id}`"
+          data-cy="btn-detail-contact"
+        >
+          <b-tooltip label="Detail" type="is-dark">
+            <b-icon icon="file-find-outline" size="is-small" />
+          </b-tooltip>
+        </router-link>
+      </b-table-column>
     </b-table>
 
     <b-modal

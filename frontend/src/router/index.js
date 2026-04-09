@@ -137,17 +137,25 @@ const routes = [
     meta: { title: 'maintenance.title', group: 'settings' },
     component: () => import('../views/Maintenance.vue'),
   },
+  // Accounts
   {
     path: '/accounts',
     name: 'accounts',
-    meta: { title: 'accounts.title', group: 'settings' },
+    meta: { title: 'Accounts', group: 'settings' },
     component: () => import('../views/accounts/Accounts.vue'),
   },
+  // Contacts
   {
     path: '/contacts',
     name: 'contacts',
-    meta: { title: 'contacts.title', group: 'contacts' },
+    meta: { title: 'Contacts', group: 'contacts' },
     component: () => import('../views/contacts/Contacts.vue'),
+  },
+  {
+    path: '/contacts/:id',
+    name: 'contact',
+    meta: { title: 'Contact Detail', group: 'contacts' },
+    component: () => import('../views/contacts/ContactDetail.vue'),
   },
 ];
 

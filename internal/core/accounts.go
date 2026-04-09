@@ -52,7 +52,7 @@ func (c *Core) QueryAccounts(
 
 func (c *Core) GetAccountByID(id int64) (models.Account, error) {
 	out := models.Account{}
-	err := c.db.Get(&out, "SELECT * FROM accounts WHERE id = ? AND deleted = false", id)
+	err := c.db.Get(&out, "SELECT * FROM accounts WHERE id = $1 AND deleted = false", id)
 	return out, err
 }
 
@@ -88,6 +88,6 @@ func (c *Core) UpdateAccount(id int64, acc models.Account) error {
 }
 
 func (c *Core) DeleteAccount(id int64) error {
-	_, err := c.db.Exec("UPDATE accounts SET deleted = true WHERE id = ?", id)
+	_, err := c.db.Exec("UPDATE accounts SET deleted = true WHERE id = $1", id)
 	return err
 }
