@@ -247,6 +247,15 @@
         icon="format-list-bulleted-square"
         :label="$t('menu.logs')"
       />
+      <b-menu-item
+        v-if="$can('settings:get')"
+        :to="{ name: 'layouts' }"
+        tag="router-link"
+        :active="activeItem.layouts"
+        data-cy="layouts"
+        icon="format-list-bulleted-square"
+        label="Layouts"
+      />
     </b-menu-item>
     <!-- settings -->
   </b-menu-list>

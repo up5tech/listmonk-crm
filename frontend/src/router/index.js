@@ -137,6 +137,14 @@ const routes = [
     meta: { title: 'maintenance.title', group: 'settings' },
     component: () => import('../views/Maintenance.vue'),
   },
+  // CRM
+  // Module layouts
+  {
+    path: '/layouts',
+    name: 'layouts',
+    meta: { title: 'Layout Manager', group: 'settings' },
+    component: () => import('../views/layouts/LayoutManager.vue'),
+  },
   // Accounts
   {
     path: '/accounts',

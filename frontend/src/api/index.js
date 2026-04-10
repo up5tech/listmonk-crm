@@ -401,6 +401,13 @@ export const enableTOTP = (id, data) => http.put(`/api/users/${id}/twofa`, data)
 
 export const disableTOTP = (id, data) => http.delete(`/api/users/${id}/twofa`, { data });
 
+// CRM
+// Module layouts
+export const getModules = async () => http.get('/api/layouts/modules', { loading: 'layouts' });
+
+export const getLayouts = async (module, typ) =>
+  http.get(`/api/layouts/${module}/${typ}`, { loading: 'layouts' });
+
 // Accounts
 export const getAccounts = async (params) =>
   http.get('/api/accounts', { params, loading: 'accounts' });

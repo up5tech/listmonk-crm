@@ -223,6 +223,12 @@ func initHTTPHandlers(e *echo.Echo, a *App) {
 			g.POST("/webhooks/bounce", pm(a.BounceWebhook, "webhooks:post_bounce"))
 		}
 
+		// crm config
+		// layouts
+		g.POST("/api/layouts", pm(a.UpdateLayout, "layouts:manager"))
+		g.GET("/api/layouts/:module/:layoutType", pm(a.GetLayout, "layouts:get"))
+		g.GET("/api/layouts/modules", pm(a.GetModules, "layouts:get"))
+
 		// accounts
 		g.GET("/api/accounts", pm(a.GetAccounts, "accounts:get"))
 		g.GET("/api/accounts/:id", pm(a.GetAccount, "accounts:get"))
