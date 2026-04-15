@@ -9,44 +9,7 @@ import (
 )
 
 func (a *App) GetModules(c echo.Context) error {
-	var modules = []models.CRMModule{
-		{
-			Name:  "Accounts",
-			Label: "Accounts",
-		},
-		{
-			Name:  "Contacts",
-			Label: "Contacts",
-		},
-		{
-			Name:  "Deals",
-			Label: "Deals",
-		},
-		{
-			Name:  "Tasks",
-			Label: "Tasks",
-		},
-		{
-			Name:  "Notes",
-			Label: "Notes",
-		},
-		{
-			Name:  "Products",
-			Label: "Products",
-		},
-		{
-			Name:  "Quotes",
-			Label: "Quotes",
-		},
-		{
-			Name:  "Orders",
-			Label: "Orders",
-		},
-		{
-			Name:  "Invoices",
-			Label: "Invoices",
-		},
-	}
+	var modules = a.core.GetModules()
 	return c.JSON(http.StatusOK, okResp{modules})
 }
 

@@ -137,6 +137,9 @@ type Queries struct {
 	UpsertListPermissions *sqlx.Stmt `query:"upsert-list-permissions"`
 	DeleteListPermission  *sqlx.Stmt `query:"delete-list-permission"`
 
+	CreateField *sqlx.Stmt `query:"create-field"`
+	UpdateField *sqlx.Stmt `query:"update-field"`
+
 	CreateAccount *sqlx.Stmt `query:"create-account"`
 	UpdateAccount *sqlx.Stmt `query:"update-account"`
 
