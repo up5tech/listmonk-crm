@@ -4,6 +4,10 @@
       <div class="column is-10">
         <h1 class="title is-4 mb-2">{{ title }}</h1>
       </div>
+      <div class="column has-text-right">
+        <b-button @click="goBack" class="mr-2"> Back </b-button>
+        <b-button type="is-primary" @click="goToEdit">Edit</b-button>
+      </div>
     </header>
 
     <b-loading :active="loading.contact" />
@@ -71,6 +75,14 @@ export default Vue.extend({
 
     onTab(tab) {
       this.activeTab = tab;
+    },
+
+    goToEdit() {
+      this.$router.push({ name: 'contactEdit', params: { id: this.$route.params.id } });
+    },
+
+    goBack() {
+      this.$router.push({ name: 'contacts' });
     },
   },
 

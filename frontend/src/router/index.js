@@ -152,6 +152,24 @@ const routes = [
     meta: { title: 'Accounts', group: 'settings' },
     component: () => import('../views/accounts/Accounts.vue'),
   },
+  {
+    path: '/accounts/new',
+    name: 'accountNew',
+    meta: { title: 'New Account', group: 'settings' },
+    component: () => import('../views/accounts/AccountEdit.vue'),
+  },
+  {
+    path: '/accounts/:id',
+    name: 'account',
+    meta: { title: 'Account Detail', group: 'settings' },
+    component: () => import('../views/accounts/AccountDetail.vue'),
+  },
+  {
+    path: '/accounts/:id/edit',
+    name: 'accountEdit',
+    meta: { title: 'Edit Account', group: 'settings' },
+    component: () => import('../views/accounts/AccountEdit.vue'),
+  },
   // Contacts
   {
     path: '/contacts',
@@ -160,10 +178,22 @@ const routes = [
     component: () => import('../views/contacts/Contacts.vue'),
   },
   {
+    path: '/contacts/new',
+    name: 'contactNew',
+    meta: { title: 'New Contact', group: 'contacts' },
+    component: () => import('../views/contacts/ContactEdit.vue'),
+  },
+  {
     path: '/contacts/:id',
     name: 'contact',
     meta: { title: 'Contact Detail', group: 'contacts' },
     component: () => import('../views/contacts/ContactDetail.vue'),
+  },
+  {
+    path: '/contacts/:id/edit',
+    name: 'contactEdit',
+    meta: { title: 'Edit Contact', group: 'contacts' },
+    component: () => import('../views/contacts/ContactEdit.vue'),
   },
 ];
 

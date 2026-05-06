@@ -6,7 +6,9 @@
         <span v-if="!isNaN(records.total)">({{ records.total }})</span>
       </div>
       <div class="column has-text-right">
-        <b-button type="is-primary" @click="showNewForm">Add Account</b-button>
+        <b-button type="is-primary" tag="router-link" :to="{ name: 'accountNew' }"
+          >Add Account</b-button
+        >
       </div>
     </header>
 
@@ -86,9 +88,9 @@
         @page-change="onPageChange"
       >
         <div>
-          <a :href="`/accounts/${props.row.id}`" @click.prevent="showEditForm(props.row)">
+          <router-link :to="{ name: 'account', params: { id: props.row.id } }">
             {{ props.row.name }}
-          </a>
+          </router-link>
         </div>
       </b-table-column>
 
@@ -156,7 +158,7 @@
         <div>
           <router-link
             v-if="$can('accounts:manage')"
-            :to="`/accounts/${props.row.id}`"
+            :to="{ name: 'account', params: { id: props.row.id } }"
             data-cy="btn-detail-account"
           >
             <b-tooltip label="Detail" type="is-dark">

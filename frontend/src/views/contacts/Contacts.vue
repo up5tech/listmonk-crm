@@ -6,7 +6,9 @@
         <span v-if="!isNaN(records.total)">({{ records.total }})</span>
       </div>
       <div class="column has-text-right">
-        <b-button type="is-primary" @click="showNewForm">Add Contact</b-button>
+        <b-button type="is-primary" tag="router-link" :to="{ name: 'contactNew' }"
+          >Add Contact</b-button
+        >
       </div>
     </header>
 
@@ -86,9 +88,9 @@
         @page-change="onPageChange"
       >
         <div>
-          <a :href="`/contacts/${props.row.id}`" @click.prevent="showEditForm(props.row)">
+          <router-link :to="{ name: 'contact', params: { id: props.row.id } }">
             {{ props.row.firstName }}
-          </a>
+          </router-link>
         </div>
       </b-table-column>
 
